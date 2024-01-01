@@ -430,7 +430,7 @@ console.log(callT);
 });
 }
 
-const docRef = doc(db, currentDate,"9:36");
+const docRef = doc(db, currentDate,"09:36");
 const docSnap = await getDoc(docRef);
 
 let originalString = docSnap.data().Expiry1;
