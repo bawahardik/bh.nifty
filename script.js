@@ -11,7 +11,6 @@
 // console.log(datew)
 
 
-
 /////////////////////////////////////////////////////
 
 let timeV = 15;
@@ -266,6 +265,18 @@ let currentDate = `${year}-${month1}-${day1}`;
 console.log(currentDate)
 const db = getFirestore();
 
+let theDate = currentDate
+
+
+
+const dateIn = document.getElementById('dateIn');
+dateIn.addEventListener('change', (event) =>{
+    const selectedDate = event.target.value;
+    theDate = selectedDate;
+    hello();
+    hello2();
+});
+
 
 
 ////////////////////////////////////////////////////////////
@@ -283,7 +294,7 @@ async function hello()
     list.removeChild(list.firstChild);
   }
 
-const q = query(collection(db,currentDate));
+const q = query(collection(db,theDate));
 let a = 0;
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc)=>{
@@ -361,7 +372,7 @@ async function hello2()
     list.removeChild(list.firstChild);
   }
 
-const q = query(collection(db,currentDate));
+const q = query(collection(db,theDate));
 let a = 0;
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc)=>{
@@ -430,7 +441,7 @@ console.log(callT);
 });
 }
 
-const docRef = doc(db, currentDate,"09:36");
+const docRef = doc(db, theDate,"09:36");
 const docSnap = await getDoc(docRef);
 
 let originalString = docSnap.data().Expiry1;
