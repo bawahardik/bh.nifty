@@ -13,7 +13,7 @@
 
 /////////////////////////////////////////////////////
 
-let timeV = 15;
+let timeV = 3;
 let strikeV = 5;
 
   const strikeBA = document.getElementById('atm');
@@ -286,9 +286,10 @@ dateIn.addEventListener('change', (event) =>{
 
 // Display the result
 hello();
+
 async function hello()
 {
-
+  //Clear left side
   const list = document.getElementById("ls")
   while (list.hasChildNodes()) {
     list.removeChild(list.firstChild);
@@ -297,7 +298,18 @@ async function hello()
 const q = query(collection(db,theDate));
 let a = 0;
 const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc)=>{
+// Convert the querySnapshot to an array
+const documentsArray = querySnapshot.docs;
+
+documentsArray.reverse();
+// Iterate over the array in reverse order
+// const documentsArray = [];
+// for (let i = documentsArray1.length - 1; i >= 0; i--)
+// {
+//   documentsArray.push(documentsArray1[i].data())
+//   // const documentsArray = documentsArray1[i];
+// }
+documentsArray.forEach((doc)=>{
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -375,7 +387,10 @@ async function hello2()
 const q = query(collection(db,theDate));
 let a = 0;
 const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc)=>{
+const documentsArray = querySnapshot.docs;
+
+documentsArray.reverse();
+documentsArray.forEach((doc)=>{
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
