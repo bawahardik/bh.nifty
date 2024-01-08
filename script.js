@@ -289,6 +289,27 @@ hello();
 
 async function hello()
 {
+
+const docRef = doc(db, theDate,"09:36");
+const docSnap = await getDoc(docRef);
+
+let originalString = docSnap.data().Expiry1;
+let ex1 = originalString.replace(/'/g, '"');
+
+let originalString1 = docSnap.data().Expiry2;
+let ex2 = originalString1.replace(/'/g, '"');
+
+console.log(ex1);
+
+// const ex1 = 
+const exOne = JSON.parse(ex1);
+const exTwo = JSON.parse(ex2);
+
+document.getElementById("ex1").innerHTML = "Expiry- " + exOne[0].expiryDate;
+
+document.getElementById("ex2").innerHTML = "Expiry- " + exTwo[0].expiryDate;
+console.log(exOne[0].expiryDate)
+  
   //Clear left side
   const list = document.getElementById("ls")
   while (list.hasChildNodes()) {
@@ -378,6 +399,26 @@ console.log(callT);
 hello2();
 async function hello2()
 {
+
+  const docRef = doc(db, theDate,"09:36");
+const docSnap = await getDoc(docRef);
+
+let originalString = docSnap.data().Expiry1;
+let ex1 = originalString.replace(/'/g, '"');
+
+let originalString1 = docSnap.data().Expiry2;
+let ex2 = originalString1.replace(/'/g, '"');
+
+console.log(ex1);
+
+// const ex1 = 
+const exOne = JSON.parse(ex1);
+const exTwo = JSON.parse(ex2);
+
+document.getElementById("ex1").innerHTML = "Expiry- " + exOne[0].expiryDate;
+
+document.getElementById("ex2").innerHTML = "Expiry- " + exTwo[0].expiryDate;
+console.log(exOne[0].expiryDate)
 
   const list = document.getElementById("rs")
   while (list.hasChildNodes()) {
