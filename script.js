@@ -252,7 +252,10 @@ let month1 = 0
 let day = date.getDate();
 if(day/10 < 1)
 {
+   if(day/10!==0)
+  {
    day1 = '0'+day;
+  }
 }
 let month = date.getMonth() + 1;
 if(month/10 < 1)
