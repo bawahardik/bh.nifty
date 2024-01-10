@@ -254,7 +254,7 @@ if(day/10 < 1)
 {
     day1 = '0'+day;
 }
-if(day/10>=1)
+else
 {
     day1 = day;
 }
@@ -262,6 +262,10 @@ let month = date.getMonth() + 1;
 if(month/10 < 1)
 {
    month1 = '0'+month;
+}
+else
+{
+  month1 = month;
 }
 let year = date.getFullYear();
 
@@ -294,7 +298,7 @@ hello();
 async function hello()
 {
 
-const docRef = doc(db, theDate,"09:36");
+const docRef = doc(db, theDate,"09:14");
 const docSnap = await getDoc(docRef);
 
 let originalString = docSnap.data().Expiry1;
@@ -404,7 +408,7 @@ hello2();
 async function hello2()
 {
 
-  const docRef = doc(db, theDate,"09:36");
+  const docRef = doc(db, theDate,"09:14");
 const docSnap = await getDoc(docRef);
 
 let originalString = docSnap.data().Expiry1;
