@@ -252,15 +252,20 @@ let month1 = 0
 let day = date.getDate();
 if(day/10 < 1)
 {
-   if(day/10!==0)
-  {
-   day1 = '0'+day;
-  }
+    day1 = '0'+day;
+}
+if(day/10>=1)
+{
+    day1 = day;
 }
 let month = date.getMonth() + 1;
 if(month/10 < 1)
 {
    month1 = '0'+month;
+}
+if(month/10>=1)
+{
+  month1=month;
 }
 let year = date.getFullYear();
 
