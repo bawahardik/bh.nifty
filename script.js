@@ -263,10 +263,6 @@ if(month/10 < 1)
 {
    month1 = '0'+month;
 }
-if(month/10>=1)
-{
-  month1=month;
-}
 let year = date.getFullYear();
 
 let currentDate = `${year}-${month1}-${day1}`;
