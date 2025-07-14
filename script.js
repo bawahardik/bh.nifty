@@ -565,7 +565,7 @@ const list2 = document.getElementById("midT")
   }
 const q = query(collection(db,theDateS));
 let a = 0;
-console.log(l);
+// console.log(l);
 const querySnapshot = await getDocs(q);
 // Convert the querySnapshot to an array
 const documentsArray = querySnapshot.docs;
@@ -577,7 +577,13 @@ documentsArray.forEach((doc)=>
  
 let originalString = doc.data().Expiry1;
 let ex1 = originalString.replace(/'/g, '"');
-
+let z = true;
+if(ex1.length == 2)
+{
+  z = false;
+  a++;
+}
+if(z == true){
 let originalString1 = doc.data().Expiry2;
 let ex2 = originalString1.replace(/'/g, '"');
 
@@ -655,6 +661,7 @@ if(boolLine == true || boolLinePUT == true)
 }
 
 
+
 let oiUpper =  exOne[strikePriceMax].CE.changeinOpenInterest + exOne[strikePriceMax-1].CE.changeinOpenInterest;
 let oiUnder = exOne[strikePriceMaxPUT].PE.changeinOpenInterest + exOne[strikePriceMaxPUT+1].PE.changeinOpenInterest;
 
@@ -684,7 +691,7 @@ else{
 if(a%timeVS == 0)
 {
    // aaa=2;
-    createTableLeft(doc.id,oiUpper,oiUnder,oiUpper-oiUnder,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,boolLine, newP);
+    createTableLeft(doc.id,oiUpper,oiUnder,oiUpper-oiUnder,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP,newPPUT);
     createTableMid(doc.id,oiUpper1,oiUnder1,oiUpper1-oiUnder1,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue);
     createTableRight(doc.id,oiUpper2,oiUnder2,oiUpper2-oiUnder2,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue);
 
@@ -692,6 +699,11 @@ if(a%timeVS == 0)
 }
 }
 a++;
+if(a==366)
+{
+  console.log('hi');
+}
+}
 //console.log(callT);
 
 });
