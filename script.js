@@ -7,12 +7,14 @@ let priceBefore = 0;
 let boolLine = false;
 let sp=0;
 let aaa=0;
-
+let b = true;
+let bm = true;
+let br = true;
 let spPUT = 0;
 let boolLinePUT = true;
 
 
-
+// createTableLeftText('For Buying Call');
   const strikeBA = document.getElementById('atm');
   const strikeB1 = document.getElementById('1S');
   const strikeB2 = document.getElementById('2S');
@@ -535,6 +537,9 @@ a++;
 
 async function helloS()
 {
+  b = true;
+  bm = true;
+  br = true;
 let l = 0;
 const docRef = doc(db, theDateS,"09:14");
 const docSnap = await getDoc(docRef);
@@ -596,7 +601,7 @@ let strikePriceMax = 0;
 
 let newP = 0;
 let newPPUT = 0;
-console.log(doc.id);
+// console.log(doc.id);
 for(let i = 0; i <= 19; i++)
 {
     if(exOne[i].CE.totalTradedVolume > tradedV)
@@ -681,7 +686,7 @@ if(finalB == true)
 {
   createTableLeft(doc.id,oiUpper,oiUnder,oiUpper-oiUnder,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP,newPPUT);
     createTableMid(doc.id,oiUpper1,oiUnder1,oiUpper1-oiUnder1,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP, newPPUT);
-    createTableRight(doc.id,oiUpper2,oiUnder2,oiUpper2-oiUnder2,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue);
+    createTableRight(doc.id,oiUpper2,oiUnder2,oiUpper2-oiUnder2,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP, newPPUT);
 }
 else{
 if(a%timeVS == 0)
@@ -689,7 +694,7 @@ if(a%timeVS == 0)
    // aaa=2;
     createTableLeft(doc.id,oiUpper,oiUnder,oiUpper-oiUnder,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP,newPPUT);
     createTableMid(doc.id,oiUpper1,oiUnder1,oiUpper1-oiUnder1,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP, newPPUT);
-    createTableRight(doc.id,oiUpper2,oiUnder2,oiUpper2-oiUnder2,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue);
+    createTableRight(doc.id,oiUpper2,oiUnder2,oiUpper2-oiUnder2,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP, newPPUT);
 
 
 }
@@ -757,8 +762,12 @@ function createTableLeft(time, call,put,diff,pcr,pc,underV, orNot,val,valP)
     column4.id = "diff2";
     column4.innerHTML = diff;
     container.appendChild(column4);
-    
+    let text = document.createElement('h2');
+    text.innerHTML = 'for buying call'
     const v = document.getElementById("leftT");
+    if(b == true){
+    v.appendChild(text);
+  b = false;}
     v.appendChild(mainC);
 }
 
@@ -805,8 +814,14 @@ function createTableMid(time, call,put,diff,pcr,pc,underV,orNot,val,valP)
     column4.id = "diff2";
     column4.innerHTML = diff;
     container.appendChild(column4);
-
+let text = document.createElement('h2');
+    text.innerHTML = 'for buying put'
     const v = document.getElementById("midT");
+    if(bm == true)
+    {
+      bm = false;
+      v.appendChild(text);
+    }
     v.appendChild(mainC);
 }
 const docRef = doc(db, theDateS,"09:40");
@@ -902,10 +917,23 @@ function createContainerLeft(time, call,put,diff,pcr,pc,underV) {
 
 
 
-function createTableRight(time, call,put,diff,pcr,pc,underV)
+function createTableRight(time, call,put,diff,pcr,pc,underV,orNot,val,valP)
 {
+  const mainC = document.createElement('div');
+  mainC.classList.add('mainC3')
+  
+  if(orNot == true)
+    {
+      const lineWithText = document.createElement('div');
+  lineWithText.textContent = '────── '+ val + ', '+ valP +' ──────';
+  lineWithText.style.fontSize = '18px';
+  mainC.appendChild(lineWithText);
+      boolLine = false;
+      boolLinePUT = false;  
+    }
   const container = document.createElement('div');
   container.classList.add('container');
+    mainC.appendChild(container);
 
     const column1 = document.createElement('div');
     column1.classList.add('column');
@@ -932,9 +960,16 @@ function createTableRight(time, call,put,diff,pcr,pc,underV)
     column4.id = "diff2";
     column4.innerHTML = diff;
     container.appendChild(column4);
-
-    const v = document.getElementById("rightT");
-    v.appendChild(container);
+    let text = document.createElement('h2');
+text.innerHTML = 'common'
+const v = document.getElementById("rightT");
+    if(br == true)
+    {
+      br = false;
+      v.appendChild(text);
+    }
+    
+    v.appendChild(mainC);
 }
 
 
@@ -1096,3 +1131,8 @@ col = 'green';
   }
 }
 }
+
+
+
+document.getElementById('leftT').innerHTML = 'For Buying Call';
+
