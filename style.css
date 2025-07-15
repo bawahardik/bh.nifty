@@ -6,6 +6,7 @@ body {
 
 .container {
     display: flex;
+    
 }
 
 
@@ -227,7 +228,7 @@ input {
     font-size: larger;
 }
 #closeModal:hover{
-    background-color: rgb(255, 187, 71);
+    background-color: rgb(255, 187, 72);
   }
 
     #rf{
