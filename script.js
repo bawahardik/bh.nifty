@@ -2,6 +2,7 @@ let timeV = 3;
 let timeVS = 1;
 let strikeV = 5;
 let mainc = 0;
+let mainc2 = 0;
 let priceBefore = 0;
 let boolLine = false;
 let sp=0;
@@ -574,7 +575,7 @@ documentsArray.reverse();
 
 documentsArray.forEach((doc)=>
 {
- 
+
 let originalString = doc.data().Expiry1;
 let ex1 = originalString.replace(/'/g, '"');
 let z = true;
@@ -638,23 +639,19 @@ for(let i = 0; i <= 19; i++)
 }
 
 newPPUT = spPUT;
-//} 
 if( exOne[strikePriceMaxPUT].strikePrice != spPUT)
  {
-    // if (aaa!=1)
-    //   {
     boolLinePUT = true;
-    //   }
     spPUT = exOne[strikePriceMaxPUT].strikePrice;
  }
  else
  {
   boolLinePUT = false;
-  //sp = exOne[strikePriceMax].strikePrice;
 
 }
 
 let finalB = false;
+
 if(boolLine == true || boolLinePUT == true)
 {
     finalB = true;
@@ -664,7 +661,6 @@ if(boolLine == true || boolLinePUT == true)
 
 let oiUpper =  exOne[strikePriceMax].CE.changeinOpenInterest + exOne[strikePriceMax-1].CE.changeinOpenInterest;
 let oiUnder = exOne[strikePriceMaxPUT].PE.changeinOpenInterest + exOne[strikePriceMaxPUT+1].PE.changeinOpenInterest;
-
 
 
 let oiUpper1 =  exOne[strikePriceMax].CE.changeinOpenInterest + exOne[strikePriceMax+1].CE.changeinOpenInterest;
@@ -684,7 +680,7 @@ let putT = 0
 if(finalB == true)
 {
   createTableLeft(doc.id,oiUpper,oiUnder,oiUpper-oiUnder,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP,newPPUT);
-    createTableMid(doc.id,oiUpper1,oiUnder1,oiUpper1-oiUnder1,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue);
+    createTableMid(doc.id,oiUpper1,oiUnder1,oiUpper1-oiUnder1,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP, newPPUT);
     createTableRight(doc.id,oiUpper2,oiUnder2,oiUpper2-oiUnder2,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue);
 }
 else{
@@ -692,7 +688,7 @@ if(a%timeVS == 0)
 {
    // aaa=2;
     createTableLeft(doc.id,oiUpper,oiUnder,oiUpper-oiUnder,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP,newPPUT);
-    createTableMid(doc.id,oiUpper1,oiUnder1,oiUpper1-oiUnder1,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue);
+    createTableMid(doc.id,oiUpper1,oiUnder1,oiUpper1-oiUnder1,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue,finalB, newP, newPPUT);
     createTableRight(doc.id,oiUpper2,oiUnder2,oiUpper2-oiUnder2,Math.round((putT/callT + Number.EPSILON) * 100) / 100,Math.round(((callT/(putT+callT)) + Number.EPSILON) * 100) + '% , '+ (Math.round(((putT/(putT+callT)) + Number.EPSILON) * 100) + '%') ,exOne[9].CE.underlyingValue);
 
 
@@ -710,16 +706,9 @@ if(a==366)
 
 getIds();
 getIdsPUT();
+getIdsMid();
+getIdsMidPUT();
 console.log(mainc);
-
-
-
-
-
-
-
-
-
 
 }
 
@@ -773,6 +762,53 @@ function createTableLeft(time, call,put,diff,pcr,pc,underV, orNot,val,valP)
     v.appendChild(mainC);
 }
 
+function createTableMid(time, call,put,diff,pcr,pc,underV,orNot,val,valP)
+{
+  const mainC = document.createElement('div');
+  mainC.classList.add('mainC2')
+  
+  if(orNot == true)
+    {
+      const lineWithText = document.createElement('div');
+  lineWithText.textContent = '────── '+ val + ', '+ valP +' ──────';
+  lineWithText.style.fontSize = '18px';
+  mainC.appendChild(lineWithText);
+      boolLine = false;
+      boolLinePUT = false;  
+    }
+  const container = document.createElement('div');
+  container.classList.add('container');
+    mainC.appendChild(container);
+
+    const column1 = document.createElement('div');
+    column1.classList.add('column');
+    column1.id = "time2";
+    column1.innerHTML = time;
+
+    container.appendChild(column1);
+
+    const column2 = document.createElement('div');
+    column2.classList.add('column');
+    column2.id = "callll";
+    column2.innerHTML = call;
+    container.appendChild(column2);
+
+
+    const column3 = document.createElement('div');
+    column3.classList.add('column');
+    column3.id = "puttt";
+    column3.innerHTML = put;
+    container.appendChild(column3);
+
+    const column4 = document.createElement('div');
+    column4.classList.add('column');
+    column4.id = "diff2";
+    column4.innerHTML = diff;
+    container.appendChild(column4);
+
+    const v = document.getElementById("midT");
+    v.appendChild(mainC);
+}
 const docRef = doc(db, theDateS,"09:40");
 const docSnap = await getDoc(docRef);
 
@@ -864,40 +900,6 @@ function createContainerLeft(time, call,put,diff,pcr,pc,underV) {
 
 
 
-function createTableMid(time, call,put,diff,pcr,pc,underV)
-{
-  const container = document.createElement('div');
-  container.classList.add('container');
-
-    const column1 = document.createElement('div');
-    column1.classList.add('column');
-    column1.id = "time2";
-    column1.innerHTML = time;
-
-    container.appendChild(column1);
-
-    const column2 = document.createElement('div');
-    column2.classList.add('column');
-    column2.id = "call2";
-    column2.innerHTML = call;
-    container.appendChild(column2);
-
-
-    const column3 = document.createElement('div');
-    column3.classList.add('column');
-    column3.id = "put2";
-    column3.innerHTML = put;
-    container.appendChild(column3);
-
-    const column4 = document.createElement('div');
-    column4.classList.add('column');
-    column4.id = "diff2";
-    column4.innerHTML = diff;
-    container.appendChild(column4);
-
-    const v = document.getElementById("midT");
-    v.appendChild(container);
-}
 
 
 function createTableRight(time, call,put,diff,pcr,pc,underV)
@@ -944,9 +946,7 @@ mainc = 0;
 const parent = document.getElementById('leftT');
 
   const containers = parent.querySelectorAll('.container');
-
   let count = 1;
-
   containers.forEach(container => {
     const callDiv = container.querySelector('[id^="calll"]');
     if (callDiv) {
@@ -973,7 +973,6 @@ col = 'green';
   else{
     console.log('hellooo');
       document.getElementById('calll' + i).style.background = col;
-  
   }
 }
 }
@@ -1015,6 +1014,85 @@ col = 'green';
     console.log('hellooo');
       document.getElementById('putt' + i).style.background = col;
   
+  }
+}
+}
+
+
+function getIdsMidPUT(){
+
+mainc2 = 0;
+
+const parent = document.getElementById('midT');
+
+  const containers = parent.querySelectorAll('.container');
+
+  let count = 1;
+
+  containers.forEach(container => {
+    const callDiv = container.querySelector('[id^="puttt"]');
+    if (callDiv) {
+      callDiv.id = 'puttt' + count;
+      count++;
+    }
+  });
+  mainc2 = count;
+  let x = 0;
+  let col = '';
+  for (let i = mainc2-1; i >= 1; i--) {
+  if(parseInt(document.getElementById('puttt' + i).innerHTML) > x)
+  {
+    document.getElementById('puttt' + i).style.background = 'red';
+    x = parseInt(document.getElementById('puttt' + i).innerHTML);
+    col = 'red';
+  }
+  else if(parseInt(document.getElementById('puttt' + i).innerHTML) < x){
+document.getElementById('puttt' + i).style.background = 'green';
+x = parseInt(document.getElementById('puttt' + i).innerHTML);
+col = 'green';
+  }
+  else{
+    console.log('hellooo');
+      document.getElementById('puttt' + i).style.background = col;
+  
+  }
+}
+}
+
+function getIdsMid(){
+
+mainc2 = 0;
+
+const parent = document.getElementById('midT');
+
+  const containers = parent.querySelectorAll('.container');
+  let count = 1;
+  containers.forEach(container => {
+    const callDiv = container.querySelector('[id^="callll"]');
+    if (callDiv) {
+      callDiv.id = 'callll' + count;
+      count++;
+    }
+  });
+  mainc2 = count;
+  // console.log(document.getElementById('calll2').style.background);
+  let x = 0;
+  let col = '';
+  for (let i = mainc2-1; i >= 1; i--) {
+  if(parseInt(document.getElementById('callll' + i).innerHTML) < x)
+  {
+    document.getElementById('callll' + i).style.background = 'red';
+    x = parseInt(document.getElementById('callll' + i).innerHTML);
+    col = 'red';
+  }
+  else if(parseInt(document.getElementById('callll' + i).innerHTML) > x){
+document.getElementById('callll' + i).style.background = 'green';
+x = parseInt(document.getElementById('callll' + i).innerHTML);
+col = 'green';
+  }
+  else{
+    console.log('hellooo');
+      document.getElementById('callll' + i).style.background = col;
   }
 }
 }
