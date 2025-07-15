@@ -37,7 +37,10 @@ let boolLinePUT = true;
     
   });
 
-
+document.getElementById('rf').addEventListener('click', function handleClick(){
+    helloS();
+    
+  });
 closeBtn.addEventListener('click', () => {
   overlay.style.display = 'none';
 });
@@ -140,7 +143,7 @@ const timeS15 = document.getElementById('15s');
 
 const tTS = document.getElementById('times');
 
-
+tTS.innerHTML = 'Time '+timeVS;
 
 timeS1.addEventListener('click', function handleClick() {
   timeVS = 1;
@@ -492,6 +495,7 @@ documentsArray.reverse();
 documentsArray.forEach((doc)=>{
  
 
+  
 let originalString = doc.data().Expiry1;
 let ex1 = originalString.replace(/'/g, '"');
 
@@ -722,7 +726,7 @@ function createTableLeft(time, call,put,diff,pcr,pc,underV, orNot,val,valP)
   const mainC = document.createElement('div');
   mainC.classList.add('mainC')
   // console.log('ss' + val + '  ' + orNot) 
-  if(orNot == true)
+  if(orNot == true && val != 0)
     {
       const lineWithText = document.createElement('div');
   lineWithText.textContent = '────── '+ val + ', '+ valP +' ──────';
@@ -766,8 +770,10 @@ function createTableLeft(time, call,put,diff,pcr,pc,underV, orNot,val,valP)
     text.innerHTML = 'for buying call'
     const v = document.getElementById("leftT");
     if(b == true){
-    v.appendChild(text);
-  b = false;}
+      b = false;
+      v.appendChild(text);
+      textTL('TIME', 'CALL', 'PUT', 'DIFF','','','',false,0,0);
+}
     v.appendChild(mainC);
 }
 
@@ -776,7 +782,7 @@ function createTableMid(time, call,put,diff,pcr,pc,underV,orNot,val,valP)
   const mainC = document.createElement('div');
   mainC.classList.add('mainC2')
   
-  if(orNot == true)
+  if(orNot == true&& val != 0)
     {
       const lineWithText = document.createElement('div');
   lineWithText.textContent = '────── '+ val + ', '+ valP +' ──────';
@@ -821,6 +827,7 @@ let text = document.createElement('h2');
     {
       bm = false;
       v.appendChild(text);
+      textTM('TIME', 'CALL', 'PUT', 'DIFF','','','',false,0,0);
     }
     v.appendChild(mainC);
 }
@@ -922,7 +929,7 @@ function createTableRight(time, call,put,diff,pcr,pc,underV,orNot,val,valP)
   const mainC = document.createElement('div');
   mainC.classList.add('mainC3')
   
-  if(orNot == true)
+  if(orNot == true && val != 0)
     {
       const lineWithText = document.createElement('div');
   lineWithText.textContent = '────── '+ val + ', '+ valP +' ──────';
@@ -963,17 +970,161 @@ function createTableRight(time, call,put,diff,pcr,pc,underV,orNot,val,valP)
     let text = document.createElement('h2');
 text.innerHTML = 'common'
 const v = document.getElementById("rightT");
+
     if(br == true)
     {
       br = false;
       v.appendChild(text);
+      textTR('TIME', 'CALL', 'PUT', 'DIFF','','','',false,0,0);
+      // createTableRight('Time', 'CALL','PUT','Diff',pcr,pc,underV,false,0,valP);
+
     }
     
     v.appendChild(mainC);
 }
+function textTR(time, call,put,diff,pcr,pc,underV,orNot,val,valP){
+  const mainC = document.createElement('div');
+  mainC.classList.add('mainC3')
+  
+  if(orNot == true && val != 0)
+    {
+      const lineWithText = document.createElement('div');
+  lineWithText.textContent = '────── '+ val + ', '+ valP +' ──────';
+  lineWithText.style.fontSize = '18px';
+  mainC.appendChild(lineWithText);
+      boolLine = false;
+      boolLinePUT = false;  
+    }
+  const container = document.createElement('div');
+  container.classList.add('container');
+  
+    mainC.appendChild(container);
+    
+    const column1 = document.createElement('div');
+    column1.classList.add('columnx');
+    column1.id = "time2";
+    column1.innerHTML = time;
+
+    container.appendChild(column1);
+
+    const column2 = document.createElement('div');
+    column2.classList.add('columnx');
+    column2.id = "call2";
+    column2.innerHTML = call;
+    container.appendChild(column2);
 
 
+    const column3 = document.createElement('div');
+    column3.classList.add('columnx');
+    column3.id = "put2";
+    column3.innerHTML = put;
+    container.appendChild(column3);
 
+    const column4 = document.createElement('div');
+    column4.classList.add('columnx');
+    column4.id = "diff2";
+    column4.innerHTML = diff;
+    container.appendChild(column4);
+
+    let v = document.getElementById('rightT');
+    v.appendChild(mainC);
+}
+function textTM(time, call,put,diff,pcr,pc,underV,orNot,val,valP){
+  const mainC = document.createElement('div');
+  mainC.classList.add('mainC2')
+  
+  if(orNot == true && val != 0)
+    {
+      const lineWithText = document.createElement('div');
+  lineWithText.textContent = '────── '+ val + ', '+ valP +' ──────';
+  lineWithText.style.fontSize = '18px';
+  mainC.appendChild(lineWithText);
+      boolLine = false;
+      boolLinePUT = false;  
+    }
+  const container = document.createElement('div');
+  container.classList.add('container');
+  
+    mainC.appendChild(container);
+    
+    const column1 = document.createElement('div');
+    column1.classList.add('columnx');
+    column1.id = "time2";
+    column1.innerHTML = time;
+
+    container.appendChild(column1);
+
+    const column2 = document.createElement('div');
+    column2.classList.add('columnx');
+    column2.id = "call2";
+    column2.innerHTML = call;
+    container.appendChild(column2);
+
+
+    const column3 = document.createElement('div');
+    column3.classList.add('columnx');
+    column3.id = "put2";
+    column3.innerHTML = put;
+    container.appendChild(column3);
+
+    const column4 = document.createElement('div');
+    column4.classList.add('columnx');
+    column4.id = "diff2";
+    column4.innerHTML = diff;
+    container.appendChild(column4);
+  
+const v = document.getElementById("midT");
+
+
+    v.appendChild(mainC);
+}
+function textTL(time, call,put,diff,pcr,pc,underV,orNot,val,valP){
+  const mainC = document.createElement('div');
+  mainC.classList.add('mainC1')
+  
+  if(orNot == true && val != 0)
+    {
+      const lineWithText = document.createElement('div');
+  lineWithText.textContent = '────── '+ val + ', '+ valP +' ──────';
+  lineWithText.style.fontSize = '18px';
+  mainC.appendChild(lineWithText);
+      boolLine = false;
+      boolLinePUT = false;  
+    }
+  const container = document.createElement('div');
+  container.classList.add('container');
+  
+    mainC.appendChild(container);
+    
+    const column1 = document.createElement('div');
+    column1.classList.add('columnx');
+    column1.id = "time2";
+    column1.innerHTML = time;
+
+    container.appendChild(column1);
+
+    const column2 = document.createElement('div');
+    column2.classList.add('columnx');
+    column2.id = "call2";
+    column2.innerHTML = call;
+    container.appendChild(column2);
+
+
+    const column3 = document.createElement('div');
+    column3.classList.add('columnx');
+    column3.id = "put2";
+    column3.innerHTML = put;
+    container.appendChild(column3);
+
+    const column4 = document.createElement('div');
+    column4.classList.add('columnx');
+    column4.id = "diff2";
+    column4.innerHTML = diff;
+    container.appendChild(column4);
+
+    const v = document.getElementById("leftT");
+    v.appendChild(mainC);
+}
 function getIds(){
 
 mainc = 0;
@@ -1135,4 +1286,30 @@ col = 'green';
 
 
 document.getElementById('leftT').innerHTML = 'For Buying Call';
+
+
+function isWithinTimeWindow() {
+  const now = new Date();
+
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  const startMinutes = 9 * 60 + 15;   // 9:15 AM = 555 minutes
+  const endMinutes = 15 * 60 + 30;    // 3:30 PM = 930 minutes
+
+  return currentMinutes >= startMinutes && currentMinutes <= endMinutes;
+}
+
+function myTask() {
+  const now = new Date().toLocaleTimeString();
+
+  if (isWithinTimeWindow()) {
+    console.log("✅ Task running at:", now);
+    hello();
+    helloS();
+    // Add your actual logic here
+  } else {
+    console.log("⏸️ Outside allowed time:", now);
+  }
+}
+
+setInterval(myTask, 180 * 1000);  // 60,000 ms = 1 minute
 
