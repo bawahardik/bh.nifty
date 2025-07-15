@@ -1,5 +1,5 @@
 let timeV = 3;
-let timeVS = 1;
+let timeVS = 3;
 let strikeV = 5;
 let mainc = 0;
 let mainc2 = 0;
