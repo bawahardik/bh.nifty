@@ -8,6 +8,8 @@ body {
     display: flex;
 }
 
+
+
 .left-section, .right-section {
     flex: 1;
     padding: 20px;
@@ -29,6 +31,7 @@ body {
     margin: 0 10px;
     position: relative;
     display: inline-block;
+    
 }
 
 .dropdown-content {
@@ -36,6 +39,7 @@ body {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
+   
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
@@ -123,9 +127,6 @@ input {
     border-left: 1px solid #ccc;
     height: 100%;
 }
-.fS{
-
-}
 .fs{
     display:none;
 }
@@ -167,6 +168,22 @@ input {
     background-color: #6375ff;
   }
   
+  .columnx {
+    flex: 1;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+    color: white;
+    font-weight:560;
+    border-right: 1px solid #ffffff; /* Add a border to the right side of each column */
+    box-sizing: border-box;
+     /* Include the border in the width */
+    margin: 0; /* Remove margin to have no space between columns */
+    background-color: #000000;
+  }
+  
+
   .column:last-child {
     border-right: none; /* Remove the border on the last column */
   }
@@ -210,5 +227,15 @@ input {
     font-size: larger;
 }
 #closeModal:hover{
+    background-color: rgb(255, 187, 71);
+  }
+
+    #rf{
+    border-radius: 50px;
+    background-color: #ff6363;
+    font-size: larger;
+    
+  }
+  #rf:hover{
     background-color: rgb(255, 187, 71);
   }
