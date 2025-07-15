@@ -159,9 +159,8 @@ input {
     text-align: center;
     vertical-align: middle;
     line-height: 40px;
-    
-    
-    border-right: 1px solid #ccc; /* Add a border to the right side of each column */
+    font-weight:560;
+    border-right: 1px solid #000000; /* Add a border to the right side of each column */
     box-sizing: border-box;
      /* Include the border in the width */
     margin: 0; /* Remove margin to have no space between columns */
@@ -174,12 +173,12 @@ input {
 
   .advB{
     border-radius: 50px;
-    background-color: #6375ff;
+    background-color: #ff6363;
     font-size: larger;
     
   }
   .advB:hover{
-    background-color: tomato;
+    background-color: rgb(255, 187, 71);
   }
   .modal-overlay {
   position: fixed;
@@ -205,5 +204,11 @@ input {
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 #closeModal{
-    margin-left: 94%;
+    margin-left: 74%;
+    border-radius: 50px;
+    background-color: #ff6363;
+    font-size: larger;
 }
+#closeModal:hover{
+    background-color: rgb(255, 187, 71);
+  }
