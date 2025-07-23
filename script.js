@@ -34,7 +34,7 @@ let boolLinePUT = true;
   const overlay = document.getElementById('modalOverlay');
   advB.addEventListener('click', function handleClick(){
     overlay.style.display = 'flex';
-    
+    helloS();
   });
 
 document.getElementById('rf').addEventListener('click', function handleClick(){
@@ -465,17 +465,17 @@ const docSnap = await getDoc(docRef);
 let originalString = docSnap.data().Expiry1;
 let ex1 = originalString.replace(/'/g, '"');
 
-let originalString1 = docSnap.data().Expiry2;
-let ex2 = originalString1.replace(/'/g, '"');
+// let originalString1 = docSnap.data().Expiry2;
+// let ex2 = originalString1.replace(/'/g, '"');
 
 //console.log(ex1);
 
 // const ex1 = 
 const exOne = JSON.parse(ex1);
-const exTwo = JSON.parse(ex2);
+// const exTwo = JSON.parse(ex2);
 document.getElementById("ex1").innerHTML = "Expiry- " + exOne[0].expiryDate;
 
-document.getElementById("ex2").innerHTML = "Expiry- " + exTwo[0].expiryDate;
+document.getElementById("ex2").innerHTML = "Expiry- 2" ;
 //console.log(exOne[0].expiryDate)
   
   //Clear left side
@@ -499,14 +499,14 @@ documentsArray.forEach((doc)=>{
 let originalString = doc.data().Expiry1;
 let ex1 = originalString.replace(/'/g, '"');
 
-let originalString1 = doc.data().Expiry2;
-let ex2 = originalString1.replace(/'/g, '"');
+// let originalString1 = doc.data().Expiry2;
+// let ex2 = originalString1.replace(/'/g, '"');
 
 // //console.log(ex1);
 
 // const ex1 = 
 const exOne = JSON.parse(ex1);
-const exTwo = JSON.parse(ex2);
+// const exTwo = JSON.parse(ex2);
 
 let callT = 0
 let putT = 0
@@ -594,11 +594,8 @@ if(ex1.length == 2)
   a++;
 }
 if(z == true){
-let originalString1 = doc.data().Expiry2;
-let ex2 = originalString1.replace(/'/g, '"');
 
 const exOne = JSON.parse(ex1);
-const exTwo = JSON.parse(ex2);
 
 let tradedV = 0;
 let strikePriceMax = 0;
@@ -837,13 +834,10 @@ const docSnap = await getDoc(docRef);
 let originalString = docSnap.data().Expiry1;
 let ex1 = originalString.replace(/'/g, '"');
 
-let originalString1 = docSnap.data().Expiry2;
-let ex2 = originalString1.replace(/'/g, '"');
 
 console.log('ookokok');
 
 const exOne = JSON.parse(ex1);
-const exTwo = JSON.parse(ex2);
 let ti = 0;
 
 for(let i = 0; i <= 19; i++)
@@ -1282,6 +1276,9 @@ col = 'green';
   }
 }
 }
+
+
+
 
 
 
